@@ -52,4 +52,4 @@ Para facilitar el análisis y depuración del desarrollo, recomendamos herramien
 ---
 
 ### **Nota**  
-Este archivo es un placeholder y será actualizado una vez que el proyecto esté completamente desarrollado y documentado.
+Este archivo es un placeholder y será actualizado una vez que el proyecto esté avanzando en su desarrollo.
