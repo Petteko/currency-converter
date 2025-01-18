@@ -64,7 +64,7 @@ Estas funcionalidades están planificadas para futuras iteraciones del proyecto:
 El proyecto sigue la siguiente estructura de directorios:
 
 ---
-
+```
 currency-converter/
 ├── src/
 │   ├── main/
@@ -89,7 +89,7 @@ currency-converter/
 │                   └── converter/
 │                       └── ConversorMonedasTest.java
 └── pom.xml
-
+```
 ---
 
 ## **Herramientas Recomendadas**
