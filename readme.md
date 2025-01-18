@@ -64,6 +64,7 @@ Estas funcionalidades están planificadas para futuras iteraciones del proyecto:
 El proyecto sigue la siguiente estructura de directorios:
 
 ---
+
 currency-converter/
 ├── src/
 │   ├── main/
@@ -87,7 +88,8 @@ currency-converter/
 │                   │   └── APIClientTest.java
 │                   └── converter/
 │                       └── ConversorMonedasTest.java
-└── pom.xml```
+└── pom.xml
+
 ---
 
 ## **Herramientas Recomendadas**
