@@ -3,95 +3,124 @@ package com.currencyconverter;
 import com.currencyconverter.converter.ConversorMonedas;
 import com.currencyconverter.api.UnsupportedCurrencyPairException;
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
+    private static final String[] CURRENCIES = {"ARS", "BRL", "CLP", "UYU", "USD", "EUR"};
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final ConversorMonedas conversor = new ConversorMonedas();
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        ConversorMonedas conversor = new ConversorMonedas();
         boolean exit = false;
-        String[] currencies = {"ARS", "BRL", "CLP", "UYU", "USD", "EUR"};
 
         while (!exit) {
-            // Display origin currency options
-            System.out.println("Seleccione la moneda de origen:");
-            for (int i = 1; i <= currencies.length; i++) {
-                System.out.println(i + ". " + currencies[i - 1]);
+            // Mostrar menú principal
+            System.out.println("\n=== Conversor de Monedas ===");
+            System.out.println("1. Realizar una conversión");
+            System.out.println("2. Salir");
+            System.out.print("Seleccione una opción: ");
+
+            int option = readIntegerInput(1, 2);
+
+            switch (option) {
+                case 1:
+                    performConversion();
+                    break;
+                case 2:
+                    exit = true;
+                    System.out.println("Gracias por usar el Conversor de Monedas. ¡Hasta luego!");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intente nuevamente.");
+            }
+        }
+
+        scanner.close();
+    }
+
+    // Método para realizar una conversión
+    private static void performConversion() {
+        boolean anotherConversion = true;
+
+        while (anotherConversion) {
+            // Seleccionar moneda de origen
+            System.out.println("\nSeleccione la moneda de origen:");
+            String originCurrency = selectCurrency();
+
+            // Seleccionar moneda de destino
+            System.out.println("\nSeleccione la moneda de destino:");
+            String destinationCurrency = selectCurrency();
+
+            // Validar que las monedas sean diferentes
+            if (originCurrency.equals(destinationCurrency)) {
+                System.out.println("Error: Las monedas de origen y destino no pueden ser iguales.");
+                continue;
             }
 
-            // Read and validate origin selection
-            int originSelection = readIntegerInput(scanner, 1, currencies.length);
-            String originCurrency = currencies[originSelection - 1];
+            // Ingresar el monto a convertir
+            System.out.print("\nIngrese el monto a convertir: ");
+            double amount = readDoubleInput();
 
-            // Create list of destination currencies excluding origin
-            List<String> destinationCurrencies = new ArrayList<>();
-            for (String currency : currencies) {
-                if (!currency.equals(originCurrency)) {
-                    destinationCurrencies.add(currency);
-                }
-            }
-
-            // Display destination currency options
-            System.out.println("Seleccione la moneda de destino:");
-            for (int i = 1; i <= destinationCurrencies.size(); i++) {
-                System.out.println(i + ". " + destinationCurrencies.get(i - 1));
-            }
-
-            // Read and validate destination selection
-            int destinationSelection = readIntegerInput(scanner, 1, destinationCurrencies.size());
-            String destinationCurrency = destinationCurrencies.get(destinationSelection - 1);
-
-            // Read and validate amount
-            double amount = readDoubleInput(scanner);
-
-            // Perform conversion
+            // Realizar la conversión
             try {
                 String resultado = conversor.convertir(originCurrency, destinationCurrency, amount);
-                System.out.println(resultado);
+                System.out.println("\n=== Resultado de la Conversión ===");
+                System.out.println(originCurrency + " a " + destinationCurrency + ":");
+                System.out.println(amount + " " + originCurrency + " = " + resultado); // Resultado limpio
             } catch (UnsupportedCurrencyPairException e) {
                 System.out.println("Error: " + e.getMessage());
             }
 
-            // Ask if the user wants to perform another conversion
-            System.out.println("¿Desea realizar otra conversión? (si/no)");
-            String anotherConversion = scanner.nextLine().toLowerCase();
-            if (!anotherConversion.equals("si")) {
-                exit = true;
+            // Preguntar si desea realizar otra conversión
+            System.out.println("\nPresione Enter para realizar otra conversión o escriba 'exit' para salir.");
+            String input = scanner.nextLine();
+            if ("exit".equalsIgnoreCase(input)) {
+                anotherConversion = false;
             }
         }
-        scanner.close();
+    }
+    // Método para seleccionar una moneda
+    private static String selectCurrency() {
+        // Mostrar opciones de monedas
+        for (int i = 0; i < CURRENCIES.length; i++) {
+            System.out.println((i + 1) + ". " + CURRENCIES[i]);
+        }
+
+        // Leer y validar la selección del usuario
+        int selection = readIntegerInput(1, CURRENCIES.length);
+        String selectedCurrency = CURRENCIES[selection - 1];
+        System.out.println("Moneda seleccionada: " + selectedCurrency);
+        return selectedCurrency;
     }
 
-    // Helper method to read and validate integer input
-    public static int readIntegerInput(Scanner scanner, int min, int max) {
-        int selection = -1;
-        while (selection < min || selection > max) {
+    // Método para leer y validar una entrada entera
+    private static int readIntegerInput(int min, int max) {
+        int input = -1;
+        while (input < min || input > max) {
             try {
-                selection = Integer.parseInt(scanner.nextLine());
-                if (selection < min || selection > max) {
-                    System.out.println("Opción inválida. Por favor, ingrese un número entre " + min + " y " + max + ".");
+                input = Integer.parseInt(scanner.nextLine());
+                if (input < min || input > max) {
+                    System.out.print("Opción no válida. Ingrese un número entre " + min + " y " + max + ": ");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Entrada inválida. Por favor, ingrese un número.");
+                System.out.print("Entrada inválida. Ingrese un número: ");
             }
         }
-        return selection;
+        return input;
     }
 
-    // Helper method to read and validate double input
-    public static double readDoubleInput(Scanner scanner) {
-        double amount = -1;
-        while (amount < 0) {
+    // Método para leer y validar una entrada de tipo double
+    private static double readDoubleInput() {
+        double input = -1;
+        while (input < 0) {
             try {
-                amount = Double.parseDouble(scanner.nextLine());
-                if (amount < 0) {
-                    System.out.println("Monto inválido. Por favor, ingrese un número positivo.");
+                input = Double.parseDouble(scanner.nextLine());
+                if (input < 0) {
+                    System.out.print("Monto inválido. Ingrese un número positivo: ");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Entrada inválida. Por favor, ingrese un número.");
+                System.out.print("Entrada inválida. Ingrese un número: ");
             }
         }
-        return amount;
+        return input;
     }
 }

@@ -13,6 +13,6 @@ public class ConversorMonedas {
     public String convertir(String monedaOrigen, String monedaDestino, double monto) throws UnsupportedCurrencyPairException {
         double tasa = apiClient.obtenerTasaCambio(monedaOrigen, monedaDestino);
         double resultado = monto * tasa;
-        return String.format("%.2f %s = %.2f %s", monto, monedaOrigen, resultado, monedaDestino);
+        return String.format("%.2f %s", resultado, monedaDestino); // Solo devuelve el monto convertido
     }
 }
