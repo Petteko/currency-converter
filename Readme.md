@@ -66,6 +66,8 @@ El proyecto sigue la siguiente estructura de directorios:
 ---
 ```
 currency-converter/
+├── .gitignore
+├── pom.xml
 ├── src/
 │   ├── main/
 │   │   ├── java/
@@ -82,15 +84,7 @@ currency-converter/
 │   │   │           └── Main.java
 │   │   └── resources/
 │   │       └── config.properties
-│   └── test/
-│       └── java/
-│           └── com/
-│               └── currencyconverter/
-│                   ├── api/
-│                   │   └── APIClientTest.java
-│                   └── converter/
-│                       └── ConversorMonedasTest.java
-└── pom.xml
+└── README.md
 ```
 ---
 

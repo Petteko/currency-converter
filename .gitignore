@@ -1,1 +1,22 @@
+# Ignorar archivos de configuración de IntelliJ IDEA
+/.idea/
+*.iml
+*.ipr
+*.iws
+
+# Ignorar archivos de configuración local
 /src/main/resources/config.properties
+
+# Ignorar carpetas de compilación y dependencias
+/target/
+/bin/
+/build/
+/.gradle/
+/.mvn/
+/project/target/
+/project/project/
+/project/plugins/
+/project/metals.sbt
+
+# Ignorar archivos de testing
+/src/test/
