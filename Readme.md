@@ -72,11 +72,13 @@ currency-converter/
 │   │   │   └── com/
 │   │   │       └── currencyconverter/
 │   │   │           ├── api/
-│   │   │           │   └── APIClient.java
+│   │   │           │   ├── APIClient.java
+│   │   │           │   ├── RatesManager.java
+│   │   │           │   └── UnsupportedCurrencyPairException.java
 │   │   │           ├── converter/
 │   │   │           │   └── ConversorMonedas.java
-│   │   │           ├── utils/
-│   │   │           │   └── UtilityClass.java
+│   │   │           ├── ConversionEntry.java
+│   │   │           ├── ConversionHistory.java
 │   │   │           └── Main.java
 │   │   └── resources/
 │   │       └── config.properties

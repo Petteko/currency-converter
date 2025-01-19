@@ -8,24 +8,28 @@ public class Main {
     private static final String[] CURRENCIES = {"ARS", "BRL", "CLP", "UYU", "USD", "EUR"};
     private static final Scanner scanner = new Scanner(System.in);
     private static final ConversorMonedas conversor = new ConversorMonedas();
+    private static final ConversionHistory conversionHistory = new ConversionHistory();
 
     public static void main(String[] args) {
         boolean exit = false;
 
         while (!exit) {
-            // Mostrar menú principal
             System.out.println("\n=== Conversor de Monedas ===");
             System.out.println("1. Realizar una conversión");
-            System.out.println("2. Salir");
+            System.out.println("2. Ver historial de conversiones");
+            System.out.println("3. Salir");
             System.out.print("Seleccione una opción: ");
 
-            int option = readIntegerInput(1, 2);
+            int option = readIntegerInput(1, 3);
 
             switch (option) {
                 case 1:
                     performConversion();
                     break;
                 case 2:
+                    conversionHistory.displayHistory();
+                    break;
+                case 3:
                     exit = true;
                     System.out.println("Gracias por usar el Conversor de Monedas. ¡Hasta luego!");
                     break;
@@ -34,6 +38,8 @@ public class Main {
             }
         }
 
+        // Mostrar historial al salir
+        conversionHistory.displayHistory();
         scanner.close();
     }
 
@@ -65,7 +71,17 @@ public class Main {
                 String resultado = conversor.convertir(originCurrency, destinationCurrency, amount);
                 System.out.println("\n=== Resultado de la Conversión ===");
                 System.out.println(originCurrency + " a " + destinationCurrency + ":");
-                System.out.println(amount + " " + originCurrency + " = " + resultado); // Resultado limpio
+                System.out.println(amount + " " + originCurrency + " = " + resultado);
+
+                // Registrar la conversión en el historial
+                String[] parts = resultado.split(" ");
+                if (parts.length >= 2) {
+                    double convertedAmount = Double.parseDouble(parts[0].replace(",", ".")); // Manejar comas como separador decimal
+                    ConversionEntry entry = new ConversionEntry(originCurrency, destinationCurrency, amount, convertedAmount);
+                    conversionHistory.addEntry(entry);
+                } else {
+                    System.out.println("Error: No se pudo registrar la conversión en el historial.");
+                }
             } catch (UnsupportedCurrencyPairException e) {
                 System.out.println("Error: " + e.getMessage());
             }
