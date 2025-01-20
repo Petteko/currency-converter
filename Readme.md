@@ -1,69 +1,32 @@
 # Conversor de Monedas
 
-Este repositorio contiene el desarrollo de un sistema interactivo de conversión de monedas, implementado en Java. El proyecto explora diversas funcionalidades del lenguaje y su ecosistema para interactuar con APIs, procesar datos en formato JSON y brindar una experiencia personalizada al usuario.
+Este repositorio contiene un sistema interactivo de conversión de monedas desarrollado en Java. El programa permite a los usuarios convertir entre diferentes monedas utilizando tasas de cambio en tiempo real obtenidas de una API externa.
 
 ---
 
-## **Descripción del Proyecto**
+## Funcionalidades Principales
 
-El proyecto se desarrolla en múltiples fases, abordando las siguientes áreas clave:
+1. **Conversión de Monedas**:
+   - Soporta las siguientes monedas: ARS (Peso argentino), BRL (Real brasileño), CLP (Peso chileno), UYU (Peso uruguayo), USD (Dólar estadounidense), EUR (Euro).
+   - Realiza conversiones en tiempo real utilizando tasas de cambio actualizadas.
 
-### **Funcionalidades Implementadas**
-1. **Uso de HttpClient**:
-    - Realización de solicitudes HTTP para conectarse a una API de tasas de cambio.
-    - Obtención eficiente de respuestas y manejo estructurado de las operaciones HTTP.
+2. **Interfaz de Usuario en Consola**:
+   - Menú interactivo que guía al usuario paso a paso.
+   - Permite seleccionar monedas de origen y destino, e ingresar el monto a convertir.
 
-2. **Configuración con HttpRequest**:
-    - Personalización de solicitudes HTTP, permitiendo la especificación de parámetros y opciones específicas para la consulta.
+3. **Manejo de Errores**:
+   - Validación de entradas para evitar errores.
+   - Mensajes claros en caso de problemas con la API o entradas inválidas.
 
-3. **Gestión de Respuestas con HttpResponse**:
-    - Análisis detallado de las respuestas recibidas, accediendo a códigos de estado, encabezados y datos en formato JSON.
-
-4. **Manipulación de JSON con Gson**:
-    - Uso de la biblioteca Gson para mapear datos JSON a objetos Java, facilitando la extracción y manipulación de información clave.
-
-5. **Filtrado de Monedas**:
-    - Navegación en la estructura JSON de la API para obtener datos específicos de monedas.
-    - Selección de monedas soportadas: ARS (Peso argentino), BRL (Real brasileño), CLP (Peso chileno), UYU (Peso uruguayo), USD (Dólar estadounidense), EUR (Euro).
-
-6. **Conversión de Monedas**:
-    - Implementación de la lógica para calcular valores convertidos entre diferentes monedas, utilizando las tasas de cambio obtenidas.
-
-7. **Interfaz de Usuario en Consola**:
-    - Creación de un menú interactivo basado en la consola, permitiendo a los usuarios seleccionar opciones de conversión y proporcionar datos para los cálculos.
+4. **Historial de Conversiones**:
+   - Registra las últimas conversiones realizadas.
+   - Muestra el historial con detalles como monedas, montos y marcas de tiempo.
 
 ---
 
-### **Funcionalidades Adicionales (Opcionales)**
+## Estructura del Proyecto
 
-Estas funcionalidades están planificadas para futuras iteraciones del proyecto:
-
-1. **Historial de Conversiones**:
-    - Registro de las últimas conversiones realizadas.
-    - Almacenamiento en un archivo o base de datos para persistencia.
-
-2. **Ampliación de Monedas Soportadas**:
-    - Inclusión de más monedas para ampliar la versatilidad de la aplicación.
-
-3. **Registros con Marca de Tiempo**:
-    - Uso de la biblioteca `java.time` para añadir detalles temporales a las conversiones realizadas.
-
-4. **Caché de Tasas de Cambio**:
-    - Implementación de un sistema de caché para reducir el número de llamadas a la API y mejorar el rendimiento.
-
-5. **Validación de Entradas**:
-    - Mejora de la validación de las monedas ingresadas por el usuario para evitar errores.
-
-6. **Interfaz de Usuario Mejorada**:
-    - Refactorización del menú principal para hacerlo más intuitivo y fácil de usar.
-
----
-
-## **Estructura del Proyecto**
-
-El proyecto sigue la siguiente estructura de directorios:
-
----
+El proyecto está organizado de la siguiente manera:
 ```
 currency-converter/
 ├── .gitignore
@@ -86,24 +49,37 @@ currency-converter/
 │   │       └── config.properties
 └── README.md
 ```
----
-
-## **Herramientas Recomendadas**
-
-Para facilitar el análisis y depuración del desarrollo, recomendamos las siguientes herramientas:
-
-- **Postman**: Para probar las solicitudes HTTP a la API.
-- **IDE de Java**: Eclipse, IntelliJ IDEA, o cualquier otra de tu preferencia.
-- **Maven**: Para la gestión de dependencias y construcción del proyecto.
 
 ---
 
-## **Notas**
+## Instrucciones de Uso
 
-Este archivo se actualizará a medida que el proyecto avance en su desarrollo. Las funcionalidades adicionales se implementarán en futuras iteraciones para mejorar la experiencia del usuario y la robustez del sistema.
+1. Clonar el Repositorio:
+   - Ejecuta el siguiente comando en tu terminal:
+     ```
+     git clone https://github.com/Petteko/currency-converter.git
+     cd currency-converter
+
+2. Compilar y Ejecutar:
+   - Si usas Maven, ejecuta los siguientes comandos:
+     ```
+     mvn clean install
+     mvn exec:java -Dexec.mainClass="com.currencyconverter.Main"
+
+3. Usar el Programa:
+   - Sigue las instrucciones en la consola para seleccionar monedas y realizar conversiones.
 
 ---
 
-## **Contribuciones**
+## Dependencias
+
+El proyecto utiliza las siguientes dependencias:
+
+- Gson: Para manejar respuestas JSON de la API.
+- Java 11 o superior: Para ejecutar el programa.
+
+---
+
+## Contribuciones
 
 Las contribuciones son bienvenidas. Si deseas contribuir, por favor sigue las pautas de contribución que se detallarán en un futuro.
