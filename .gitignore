@@ -20,3 +20,4 @@
 
 # Ignorar archivos de testing
 /src/test/
+/src/main/resources/config.properties.local
