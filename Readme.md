@@ -59,21 +59,25 @@ currency-converter/
      ```
      git clone https://github.com/Petteko/currency-converter.git
      cd currency-converter
-2. Agregar tu API Key:
+2. Configurar Git para Proteger tu Clave (¡Obligatorio!)
+   - Evita subir accidentalmente tu clave privada:
+     ```
+     git update-index --assume-unchanged src/main/resources/config.properties
+3. Agregar tu API Key:
    - Abre el archivo config.properties y reemplaza TU_API_KEY_AQUI con tu clave de API:
      ```
      api.key=TU_API_KEY_AQUI
 
-   - Nota: Si no tienes una API key, regístrate en un servicio como exchangerate-api.com o Alpha Vantage para obtener una.
+   - Nota: Si no tienes una API key, regístrate en un servicio como [exchangerate-api.com](https://app.exchangerate-api.com) o Alpha Vantage para obtener una.
 
 
-3. Compilar y Ejecutar:
+4. Compilar y Ejecutar:
    - Si usas Maven, ejecuta los siguientes comandos:
      ```
      mvn clean install
      mvn exec:java -Dexec.mainClass="com.currencyconverter.Main"
 
-4. Usar el Programa:
+5. Usar el Programa:
    - Sigue las instrucciones en la consola para seleccionar monedas y realizar conversiones.
 
 ---
