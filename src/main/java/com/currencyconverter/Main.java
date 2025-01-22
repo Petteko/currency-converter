@@ -13,6 +13,12 @@ public class Main {
     public static void main(String[] args) {
         boolean exit = false;
 
+        // Registrar hook para guardar el historial al cerrar
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("\nGuardando historial de conversiones...");
+            conversionHistory.saveHistoryToFile();
+        }));
+
         while (!exit) {
             System.out.println("\n=== Conversor de Monedas ===");
             System.out.println("1. Realizar una conversión");
