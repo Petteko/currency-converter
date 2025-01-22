@@ -5,7 +5,7 @@
 *.iws
 
 # Ignorar archivos de configuración local
-/src/main/resources/config.properties
+
 
 # Ignorar carpetas de compilación y dependencias
 /target/
