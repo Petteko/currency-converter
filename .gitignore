@@ -5,7 +5,7 @@
 *.iws
 
 # Ignorar archivos de configuración local
-
+/logs
 
 # Ignorar carpetas de compilación y dependencias
 /target/
